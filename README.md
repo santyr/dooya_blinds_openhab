@@ -2,13 +2,15 @@
 
 Local Linux/Raspberry Pi service connecting a Dooya Connector bridge to openHAB over MQTT. Intended for HT Simple Touch rechargeable skylight shades, without the Matter motor upgrade.
 
-**Status: initial implementation, tested with simulated protocol responses only. No physical HT motor or bridge has been tested.** P-Box DD7006 is the primary target; DD1554E Mini compatibility remains a commissioning check. HT uses the standard Dooya Connector app.
+**Status: initial implementation, tested with simulated protocol responses only. No physical HT motor or bridge has been tested.** The selected bridge is the P-Box (expected DD7006 family); its exact model/firmware remains a commissioning check. HT uses the standard Dooya Connector app.
 
 ## Start here
 
 - [Project and remaining work](docs/PROJECT.md)
 - [Codex handoff](docs/CODEX_HANDOFF.md)
+- [Validation record: 42 tests](docs/VALIDATION.md)
 - [Protocol and sources](docs/PROTOCOL.md)
+- [Hubitat driver source review](docs/HUBITAT_REVIEW.md)
 - [MQTT/openHAB contract](docs/MQTT.md)
 - [Deployment and commissioning](docs/DEPLOYMENT.md)
 - [Updated project plan](HT_Simple_Touch_openHAB_Project_Plan.md) — scope, research, acceptance criteria and current implementation baseline.

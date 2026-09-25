@@ -1,0 +1,23 @@
+# Copy outside Git and replace addresses/IDs. Never commit credentials.
+allow_commands = false
+poll_seconds = 600
+stale_seconds = 1800
+
+[bridge]
+host = "192.0.2.10" # documentation-only address; replace with P-Box IP
+interface_ip = "0.0.0.0" # set host LAN IP on multi-interface machines
+key_file = "/etc/dooya-blinds/bridge.key"
+
+[mqtt]
+host = "127.0.0.1"
+port = 1883
+prefix = "earthship/shades/v1"
+username = "dooya"
+password_file = "/etc/dooya-blinds/mqtt.password"
+tls = false # enable for brokers configured with trusted TLS certificates
+
+[[shades]]
+id = "skylight_1"
+mac = "0000000000000001" # replace with discover output, preserve case
+invert = false
+percentage = false # enable after bidirectional percentage control is qualified

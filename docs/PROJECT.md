@@ -4,7 +4,7 @@ Updated 2026-09-25. Owner: Sat Antyr.
 
 ## Decisions
 
-Use standard HT Simple Touch shades; no Matter motor upgrade. Treat Dooya as the OEM. DV24WE/S is a likely motor, not a verified part number. HT uses Dooya's standard Connector app. Prefer a local P-Box; a DD1554E Mini is a candidate with unverified exact firmware support. USB on the Mini supplies power; the documented integration uses Wi-Fi, not USB data.
+Use standard HT Simple Touch shades; no Matter motor upgrade. Treat Dooya as the OEM. DV24WE/S is a likely motor, not a verified part number. HT uses Dooya's standard Connector app. The owner selected the P-Box on 2026-09-25. DD1554E Mini is background research only and is outside the initial deployment target. USB on the Mini supplies power; the documented integration uses Wi-Fi, not USB data.
 
 The desired daily-use functionality is individual/group open, close, stop, percentage targets, reported final position, external-remote synchronization and available battery telemetry. Home automation and thermal policy remain in openHAB. Host the adapter on an existing Linux machine or Raspberry Pi.
 

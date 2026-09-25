@@ -230,7 +230,7 @@ Sources were reviewed during the project discussion and on 25 September 2026. Li
 This section supersedes earlier proposed defaults when they differ from the implemented contract.
 
 - Canonical app: Connector, published by Shade Connector/Dooya.
-- P-Box remains the primary target. DD1554E is a lower-cost candidate using USB power and Wi-Fi data; exact Mini firmware compatibility is not yet tested. No extra Pi is required.
+- The owner has selected the P-Box. DD1554E is retained only as background research; it is a lower-cost candidate using USB power and Wi-Fi data; exact Mini firmware compatibility is not yet tested. No extra Pi is required.
 - The located API specification documents AES token derivation, UDP ports 32100/32101, multicast 238.0.0.18, discovery, cached reads, writes and post-motion reports. Pairing remains app-only.
 - The implementation separates bridge cache from Report-derived position. Battery values remain raw until scaling/chemistry is verified.
 - Initial commands: UP/DOWN/STOP and 0–100; favorites, completion correlation, thermal rules and group policies are backlog items.

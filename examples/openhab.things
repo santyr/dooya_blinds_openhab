@@ -1,0 +1,17 @@
+// Link to your existing MQTT broker Thing; replace mqtt:broker:local if different.
+Thing mqtt:topic:dooya_skylight_1 "Skylight 1" (mqtt:broker:local) [
+    availabilityTopic="earthship/shades/v1/service/availability",
+    payloadAvailable="online", payloadNotAvailable="offline"
+] {
+    Channels:
+        Type rollershutter : position "Shade" [
+            stateTopic="earthship/shades/v1/skylight_1/position",
+            commandTopic="earthship/shades/v1/skylight_1/command",
+            up="UP", down="DOWN", stop="STOP", retained=false
+        ]
+        Type switch : available "Reported state available" [
+            stateTopic="earthship/shades/v1/skylight_1/availability",
+            on="online", off="offline"
+        ]
+        Type string : state "Diagnostics" [stateTopic="earthship/shades/v1/skylight_1/state"]
+}

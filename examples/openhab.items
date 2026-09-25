@@ -1,0 +1,4 @@
+// 0=open / 100=closed; actual reports, not optimistic commands, drive position.
+Rollershutter Shade_Skylight1 "Skylight 1 [%d %%]" { channel="mqtt:topic:dooya_skylight_1:position", autoupdate="false" }
+Switch Shade_Skylight1_Available "Skylight state available" { channel="mqtt:topic:dooya_skylight_1:available" }
+String Shade_Skylight1_Diagnostics "Skylight diagnostics" { channel="mqtt:topic:dooya_skylight_1:state" }

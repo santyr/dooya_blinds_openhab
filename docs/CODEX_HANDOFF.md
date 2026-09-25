@@ -2,7 +2,7 @@
 
 ## Read order
 
-AGENTS.md, README.md, PROJECT.md, PROTOCOL.md, MQTT.md, DEPLOYMENT.md; then src/ and tests/. Read ../HT_Simple_Touch_openHAB_Project_Plan.md for the full plan; its final implementation-baseline section identifies deferred features.
+AGENTS.md, README.md, PROJECT.md, PROTOCOL.md, MQTT.md, DEPLOYMENT.md; HUBITAT_REVIEW.md, VALIDATION.md; then src/ and tests/. Read ../HT_Simple_Touch_openHAB_Project_Plan.md for the full plan; its final implementation-baseline section identifies deferred features.
 
 ## What is authorized / implemented
 

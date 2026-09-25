@@ -1,0 +1,4 @@
+# Runtime versions used for initial simulated verification on 2026-09-25.
+# Install the project with: pip install -c requirements-tested.txt .
+paho-mqtt==2.1.0
+pycryptodomex==3.23.0

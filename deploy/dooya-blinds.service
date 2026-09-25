@@ -1,0 +1,23 @@
+[Unit]
+Description=Dooya Connector local MQTT adapter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=dooya
+Group=dooya
+WorkingDirectory=/opt/dooya-blinds
+ExecStart=/opt/dooya-blinds/.venv/bin/dooya-openhab --config /etc/dooya-blinds/config.toml serve
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
