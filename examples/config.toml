@@ -5,11 +5,11 @@ stale_seconds = 1800
 
 [bridge]
 host = "192.0.2.10" # documentation-only address; replace with P-Box IP
-interface_ip = "0.0.0.0" # set host LAN IP on multi-interface machines
+interface_ip = "0.0.0.0" # on multihomed Ubuntu host, use interface facing P-Box
 key_file = "/etc/dooya-blinds/bridge.key"
 
 [mqtt]
-host = "127.0.0.1"
+host = "127.0.0.1" # only if MQTT broker is on this Ubuntu host; otherwise use broker LAN address
 port = 1883
 prefix = "earthship/shades/v1"
 username = "dooya"

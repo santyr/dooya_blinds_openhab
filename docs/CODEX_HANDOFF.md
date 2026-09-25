@@ -2,11 +2,11 @@
 
 ## Read order
 
-AGENTS.md, README.md, PROJECT.md, PROTOCOL.md, MQTT.md, DEPLOYMENT.md; HUBITAT_REVIEW.md, VALIDATION.md; then src/ and tests/. Read ../HT_Simple_Touch_openHAB_Project_Plan.md for the full plan; its final implementation-baseline section identifies deferred features.
+AGENTS.md, README.md, docs/PROJECT.md, docs/PROTOCOL.md, docs/MQTT.md, docs/MQTT_BROKER.md, docs/DEPLOYMENT.md; then docs/HUBITAT_REVIEW.md, docs/VALIDATION.md, src/ and tests/. Read HT_Simple_Touch_openHAB_Project_Plan.md for the full plan; its final implementation-baseline section identifies deferred features.
 
 ## What is authorized / implemented
 
-The user requested this repository's documentation and coding that can be completed before hardware arrives. Code here provides WLAN v1.03 primitives, read-only discovery/cache inspection, MQTT command handling, raw report preservation, stale-state handling, and deployment templates. It is not commissioned or installed in the household. No movement tests have been run on real shades.
+The user requested this repository's documentation and coding that can be completed before hardware arrives. The owner chose the P-Box and specified that the adapter will run on the **existing Ubuntu Server host alongside openHAB**. The owner explicitly authorized Codex to check that host for an MQTT broker and set one up if needed. Follow docs/MQTT_BROKER.md, reuse a suitable existing broker when available, and install/configure a local Mosquitto broker only if needed; this is authorized deployment work when actual host access is provided. Code here provides WLAN v1.03 primitives, read-only discovery/cache inspection, MQTT command handling, raw report preservation, stale-state handling, and deployment templates. It is not commissioned or installed in the household. No movement tests have been run on real shades.
 
 Run `python3 -m venv .venv`, `.venv/bin/pip install -e '.[test]'`, `.venv/bin/pytest`. Test failures must be resolved before deployment. Use existing dependencies; the implementation does not require Home Assistant or Hubitat.
 
@@ -23,7 +23,7 @@ Run `python3 -m venv .venv`, `.venv/bin/pip install -e '.[test]'`, `.venv/bin/py
 
 ## Deployment handoff prompt
 
-“Continue santyr/dooya_blinds_openhab. Read AGENTS.md and all current docs. Inspect the actual Linux host, openHAB version, broker and shade/bridge inventory before editing deployment configuration. Run tests, then use discover/inspect without moving shades. Record sanitized compatibility results. Implement remaining gaps based on observed protocol responses. Enable actuation only during authorized supervised commissioning. Validate physical open/closed direction, stop, percentages, remote updates, stale state, internet isolation and restart behavior. Update docs with measured results; distinguish simulated from hardware tests. Do not commit credentials, re-pair/reset motors or change travel limits as a diagnostic shortcut.”
+“Continue santyr/dooya_blinds_openhab. Read AGENTS.md and all current docs. Deploy the adapter on the same Ubuntu Server host that runs openHAB; the owner chose the P-Box. Inspect that host's Python/openHAB versions, LAN interface, shade/bridge inventory, and MQTT broker. Reuse a suitable broker if present, or install/configure Mosquitto on the Ubuntu host if needed, as authorized by the owner; follow docs/MQTT_BROKER.md. Point the adapter and openHAB MQTT broker Thing at the same broker and test non-command topics before shade movement. Run tests, then use discover/inspect without moving shades. Record sanitized compatibility results. Implement remaining gaps based on observed protocol responses. Enable actuation only during authorized supervised commissioning. Validate physical open/closed direction, stop, percentages, remote updates, stale state, internet isolation and restart behavior. Update docs with measured results; distinguish simulated from hardware tests. Do not commit credentials, re-pair/reset motors or change travel limits as a diagnostic shortcut.”
 
 ## Known operational limits
 

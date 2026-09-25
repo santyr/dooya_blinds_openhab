@@ -6,7 +6,7 @@ Updated 2026-09-25. Owner: Sat Antyr.
 
 Use standard HT Simple Touch shades; no Matter motor upgrade. Treat Dooya as the OEM. DV24WE/S is a likely motor, not a verified part number. HT uses Dooya's standard Connector app. The owner selected the P-Box on 2026-09-25. DD1554E Mini is background research only and is outside the initial deployment target. USB on the Mini supplies power; the documented integration uses Wi-Fi, not USB data.
 
-The desired daily-use functionality is individual/group open, close, stop, percentage targets, reported final position, external-remote synchronization and available battery telemetry. Home automation and thermal policy remain in openHAB. Host the adapter on an existing Linux machine or Raspberry Pi.
+The desired daily-use functionality is individual/group open, close, stop, percentage targets, reported final position, external-remote synchronization and available battery telemetry. Home automation and thermal policy remain in openHAB. Run the adapter as a separate service on the **same existing Ubuntu Server host as openHAB**. The user confirmed this deployment target on 2026-09-25; no Raspberry Pi is planned.
 
 ## Implementation decision
 
@@ -22,7 +22,7 @@ The initial research proposed wrapping motionblinds. Inspection showed its parse
 
 ## Required household inputs
 
-Shade count/names and RF device IDs; motor, battery and bridge labels; firmware; actual openHAB version; broker host/auth; service host/interface IP; chosen deployment path. Installer quote is $425 per rechargeable motorized skylight shade installed; remote, hub and solar inclusion are unconfirmed. No additional purchases are implied by this repository.
+Shade count/names and RF device IDs; motor, battery and bridge labels; firmware; installed Ubuntu/Python and openHAB versions; broker location/auth; Ubuntu host LAN interface/IP; chosen service installation path. The host is already chosen. Installer quote is $425 per rechargeable motorized skylight shade installed; remote, hub and solar inclusion are unconfirmed. No additional purchases are implied by this repository.
 
 ## Charging
 

@@ -1,6 +1,6 @@
 # HT Simple Touch → openHAB integration plan
 
-Version 1.1 · 25 September 2026 · Owner: Sat Antyr
+Version 1.2 · 25 September 2026 · Owner: Sat Antyr
 
 ## 1. Objective and decisions
 
@@ -20,7 +20,7 @@ Repository: https://github.com/santyr/dooya_blinds_openhab. Initial software and
 | HT internal motor identifiers exist | HT-authored guide identifies STP047 small and STP049 large [S2] | Record label photographs and cross-reference during installation |
 | DV24WE/S supports bidirectional RF | Dooya product information identifies Bi-RF; catalog lists percentage control and status feedback [S3, S4] | Target feedback-based control |
 | Local bridge integration is established | Home Assistant documents DD7006A support and local API-key retrieval [S5] | Start with existing protocol implementation |
-| Standalone implementation exists | motionblinds Python library supports Dooya and local control [S6] | Reuse and pin a tested release/commit |
+| Standalone implementation exists | motionblinds Python library supports Dooya and local control [S6] | Use as an implementation reference; preserve raw report provenance in this project's adapter |
 | Manufacturer API is obtainable | Dooya advertises local API documents upon request [S3] | Request exact firmware specification |
 
 Not yet established: actual supplied motor model; exact P-Box variant; HT firmware compatibility; which battery fields are returned; whether speed/limits are configurable through the LAN API; whether local authentication survives extended internet isolation and restarts.
@@ -51,9 +51,9 @@ Data path: openHAB MQTT binding ⇄ local MQTT broker ⇄ Python shade service �
 
 The service owns discovery, authentication, RF-device identifiers, protocol normalization, command scheduling, state freshness, and telemetry. openHAB owns household preferences, schedules, manual holds, thermal decisions, UI, and history. The P-Box owns motor pairing and RF transport. Physical remotes remain usable independently.
 
-Host the service on an existing always-on Linux machine with LAN access to the bridge. Prefer a native systemd service initially to simplify multicast networking. Confirm the actual host, openHAB version, broker, and repository before coding deployment-specific configuration. Proposed repository location is within the existing Earthship automation project if its current structure supports it; do not assume paths or existing modules without inspection.
+Run the adapter as a separate systemd service on the **same existing Ubuntu Server host as openHAB**, as confirmed by the owner on 2026-09-25. The source lives in `santyr/dooya_blinds_openhab`. Before deployment, check the Ubuntu host's Python/openHAB versions, LAN interface, and MQTT broker location and credentials. The broker might run on this host or elsewhere; do not infer its location from openHAB's location. The owner authorized Codex to check the host and set up a broker if needed. Reuse a suitable existing broker or install a local Mosquitto broker and connect both services to it as described in `docs/MQTT_BROKER.md`. Actual host state remains unknown until access is available.
 
-Give the bridge a DHCP reservation. Prefer Ethernet when available. Initially place host and P-Box on the same subnet; verify multicast and direct-IP operation. Do not expose the API or MQTT publicly. Record actual protocol ports from the chosen library/specification instead of inventing firewall rules. Existing Connector implementations use UDP and bridge port 32100 [S8]; other discovery/reply ports need confirmation.
+Give the P-Box a DHCP reservation. Prefer Ethernet when available. Initially place the Ubuntu host and P-Box on the same subnet; verify multicast and direct-IP operation. Do not expose the API or MQTT publicly. The located v1.03 specification documents UDP 32100 for commands and multicast 238.0.0.18:32101 for reports; verify response behavior against the actual P-Box firmware.
 
 ## 5. API specification and first connection
 
