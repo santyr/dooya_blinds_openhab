@@ -1,10 +1,10 @@
 # Project scope and delivery plan
 
-Updated 2026-09-25. Owner: Sat Antyr.
+Updated 2026-10-24. Owner: Sat Antyr.
 
 ## Decisions
 
-Use standard HT Simple Touch shades; no Matter motor upgrade. Treat Dooya as the OEM. DV24WE/S is a likely motor, not a verified part number. HT uses Dooya's standard Connector app. The owner selected the P-Box on 2026-09-25. DD1554E Mini is background research only and is outside the initial deployment target. USB on the Mini supplies power; the documented integration uses Wi-Fi, not USB data.
+Use standard HT Simple Touch shades; no Matter motor upgrade. Treat Dooya as the OEM. DV24WE/S is a likely motor, not a verified part number. HT uses Dooya's standard Connector app. The owner selected the P-Box on 2026-09-25 and now identifies the intended model as DD7066. DD7066M and DD7006 are not interchangeable compatibility claims. DD1554E Mini is background research only and is outside the initial deployment target. USB on the Mini supplies power; the documented integration uses Wi-Fi, not USB data.
 
 The desired daily-use functionality is individual/group open, close, stop, percentage targets, reported final position, external-remote synchronization and available battery telemetry. Home automation and thermal policy remain in openHAB. Run the adapter as a separate service on the **same existing Ubuntu Server host as openHAB**. The user confirmed this deployment target on 2026-09-25; no Raspberry Pi is planned.
 

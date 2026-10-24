@@ -1,4 +1,13 @@
-// 0=open / 100=closed; actual reports, not optimistic commands, drive position.
+// Native position: 0=open / 100=closed. Feedback updates; commands are requests.
+// No optimistic position update. Availability requires adapter AND bridge AND
+// shade liveness plus reconciled session/evidence, not only *_Available.
 Rollershutter Shade_Skylight1 "Skylight 1 [%d %%]" { channel="mqtt:topic:dooya_skylight_1:position", autoupdate="false" }
-Switch Shade_Skylight1_Available "Skylight state available" { channel="mqtt:topic:dooya_skylight_1:available" }
-String Shade_Skylight1_Diagnostics "Skylight diagnostics" { channel="mqtt:topic:dooya_skylight_1:state" }
+Switch Shade_Skylight1_Available "Reported state available" { channel="mqtt:topic:dooya_skylight_1:available", autoupdate="false" }
+Switch Shade_Skylight1_ServiceAvailable "Adapter available" { channel="mqtt:topic:dooya_skylight_1:serviceAvailable", autoupdate="false" }
+Switch Shade_Skylight1_BridgeAvailable "Bridge available" { channel="mqtt:topic:dooya_skylight_1:bridgeAvailable", autoupdate="false" }
+String Shade_Skylight1_ServiceState "Adapter session" { channel="mqtt:topic:dooya_skylight_1:serviceState" }
+String Shade_Skylight1_BridgeState "Bridge session" { channel="mqtt:topic:dooya_skylight_1:bridgeState" }
+String Shade_Skylight1_Diagnostics "Source evidence" { channel="mqtt:topic:dooya_skylight_1:sourceState" }
+
+// Latest per-shade result only; missing/overwritten results leave outcome unknown.
+String Shade_Skylight1_CommandResult "Manual request result" { channel="mqtt:topic:dooya_skylight_1:commandResult" }

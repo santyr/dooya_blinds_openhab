@@ -1,0 +1,109 @@
+{
+  "schema": "dooya-owner-shared-vector/v1",
+  "synthetic": true,
+  "key": "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+  "command": {
+    "schema": "dooya-owner-command/v1",
+    "request_id": "00000000-0000-4000-8000-000000000001",
+    "shade_id": "kitchen_01",
+    "command": 25,
+    "origin": "manual",
+    "created_at_ms": 1792854000000,
+    "expires_at_ms": 1792854010000,
+    "adapter_session": "fixture-adapter",
+    "owner_session": "00000000-0000-4000-8000-000000000002",
+    "policy_generation": null,
+    "source_context": {
+      "commissioned_epoch": "00000000-0000-4000-8000-000000000003",
+      "source_generation": 1,
+      "bridge_id": "001122334455",
+      "device_id": "001122334456"
+    }
+  },
+  "policy": {
+    "schema": "dooya-owner-policy/v1",
+    "generation": "00000000-0000-4000-8000-000000000004",
+    "owner_session": "00000000-0000-4000-8000-000000000002",
+    "adapter_session": "fixture-adapter",
+    "issued_at_ms": 1792854000000,
+    "expires_at_ms": 1792854030000,
+    "zones": {
+      "kitchen": {
+        "enabled": true,
+        "authoritative": true
+      },
+      "living": {
+        "enabled": true,
+        "authoritative": true
+      },
+      "bathroom": {
+        "enabled": true,
+        "authoritative": true
+      },
+      "bedroom": {
+        "enabled": true,
+        "authoritative": true
+      }
+    },
+    "override": {
+      "state": "ON",
+      "authoritative": true
+    },
+    "global_released": false
+  },
+  "signed_command": {
+    "envelope": {
+      "adapter_session": "fixture-adapter",
+      "command": 25,
+      "created_at_ms": 1792854000000,
+      "expires_at_ms": 1792854010000,
+      "origin": "manual",
+      "owner_session": "00000000-0000-4000-8000-000000000002",
+      "policy_generation": null,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "schema": "dooya-owner-command/v1",
+      "shade_id": "kitchen_01",
+      "source_context": {
+        "bridge_id": "001122334455",
+        "commissioned_epoch": "00000000-0000-4000-8000-000000000003",
+        "device_id": "001122334456",
+        "source_generation": 1
+      }
+    },
+    "signature": "9f5961b187f569a403d3c19af82c2a6f8e25994b6af2a7088a91188be1425cf9"
+  },
+  "signed_policy": {
+    "envelope": {
+      "adapter_session": "fixture-adapter",
+      "expires_at_ms": 1792854030000,
+      "generation": "00000000-0000-4000-8000-000000000004",
+      "global_released": false,
+      "issued_at_ms": 1792854000000,
+      "override": {
+        "authoritative": true,
+        "state": "ON"
+      },
+      "owner_session": "00000000-0000-4000-8000-000000000002",
+      "schema": "dooya-owner-policy/v1",
+      "zones": {
+        "bathroom": {
+          "authoritative": true,
+          "enabled": true
+        },
+        "bedroom": {
+          "authoritative": true,
+          "enabled": true
+        },
+        "kitchen": {
+          "authoritative": true,
+          "enabled": true
+        },
+        "living": {
+          "authoritative": true,
+          "enabled": true
+        }
+      }
+    },
+    "signature": "1e579356cd52aaee9d874cf0fcddb2f84a4d80e4a1496c779176fb7dc3cc1a14"
+  }
+}

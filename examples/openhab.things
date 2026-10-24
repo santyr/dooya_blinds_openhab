@@ -1,17 +1,32 @@
-// Link to your existing MQTT broker Thing; replace mqtt:broker:local if different.
+// Link to your verified existing broker Thing; replace mqtt:broker:local if needed.
+// Commands publish UNSIGNED REQUESTS to a trusted owner's input only. The adapter
+// must not subscribe here. No binding output can authorize or actuate a motor.
+// Install the trusted owner/receipt path separately before enabling real control.
 Thing mqtt:topic:dooya_skylight_1 "Skylight 1" (mqtt:broker:local) [
-    availabilityTopic="earthship/shades/v1/service/availability",
+    availabilityTopic="earthship/shades/v2/service/availability",
     payloadAvailable="online", payloadNotAvailable="offline"
 ] {
     Channels:
-        Type rollershutter : position "Shade" [
-            stateTopic="earthship/shades/v1/skylight_1/position",
-            commandTopic="earthship/shades/v1/skylight_1/command",
-            up="UP", down="DOWN", stop="STOP", retained=false
+        Type rollershutter : position "Observed shade / owner request" [
+            stateTopic="earthship/shades/v2/skylight_1/position",
+            commandTopic="earthship/shades/v2/owner-input/skylight_1",
+            on="UP", off="DOWN", stop="STOP", retained=false, postCommand=false
         ]
         Type switch : available "Reported state available" [
-            stateTopic="earthship/shades/v1/skylight_1/availability",
-            on="online", off="offline"
+            stateTopic="earthship/shades/v2/skylight_1/availability",
+            on="online", off="offline", postCommand=false
         ]
-        Type string : state "Diagnostics" [stateTopic="earthship/shades/v1/skylight_1/state"]
+        Type switch : serviceAvailable "Adapter available" [
+            stateTopic="earthship/shades/v2/service/availability",
+            on="online", off="offline", postCommand=false
+        ]
+        Type switch : bridgeAvailable "Bridge available" [
+            stateTopic="earthship/shades/v2/bridge/availability",
+            on="online", off="offline", postCommand=false
+        ]
+        Type string : serviceState "Adapter session" [stateTopic="earthship/shades/v2/service/state", postCommand=false]
+        Type string : bridgeState "Bridge session" [stateTopic="earthship/shades/v2/bridge/state", postCommand=false]
+        // Results are feedback only; never link this channel to a motor command.
+        Type string : commandResult "Manual request result" [stateTopic="earthship/shades/v2/skylight_1/event", postCommand=false]
+        Type string : sourceState "Source evidence" [stateTopic="earthship/shades/v2/skylight_1/state", postCommand=false]
 }
