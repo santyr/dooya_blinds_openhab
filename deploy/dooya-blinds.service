@@ -18,6 +18,9 @@ ProtectSystem=strict
 ProtectHome=true
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 UMask=0077
+StateDirectory=dooya-blinds
+StateDirectoryMode=0700
+ReadWritePaths=/var/lib/dooya-blinds
 
 [Install]
 WantedBy=multi-user.target

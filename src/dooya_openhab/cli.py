@@ -7,7 +7,7 @@ import sys
 
 from .config import load
 from .model import safe_data
-from .protocol import Connector, ProtocolError, UDPTransport
+from .protocol import Connector, MessageIDs, ProtocolError, UDPTransport
 
 
 def main():
@@ -25,13 +25,15 @@ def main():
                 signal.signal(signum, lambda *_: service.stop.set())
             service.run()
         else:
-            bridge = Connector(UDPTransport(config.bridge_host), config.key)
+            bridge = Connector(UDPTransport(config.bridge_host, timeout=config.request_timeout_seconds), config.key,
+                bridge_mac=config.bridge_mac, ids=MessageIDs(state_path=config.message_id_state_file),
+                discovery_correlation=config.discovery_correlation)
             devices = bridge.discover()
             result = {"devices": devices}
             if args.action == "inspect":
                 result["snapshots"] = {s.id: {"source": "bridge_cache", "data": safe_data(bridge.device_request(s.mac))}
                                        for s in config.shades}
-            print(json.dumps(result, indent=2))
+            print(json.dumps(result, indent=2, allow_nan=False))
         return 0
     except (OSError, ValueError, KeyError, TypeError, ProtocolError) as exc:
         # No raw exception message: malformed files/remote messages might contain credentials.

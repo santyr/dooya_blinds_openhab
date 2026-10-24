@@ -17,7 +17,10 @@ def test_zero_missing_stale():
     assert s.position==0
     s.accept({'msgType':'Report','data':{'RSSI':-80}},8)
     assert s.position_at==1
-    assert not s.snapshot(10,10)['stale']
+    # Without a validated ingress session this remains last-known history.
+    assert s.snapshot(10,10)['stale']
+    assert s.snapshot(10,10)['reported_position']==0
+    assert s.snapshot(10,10)['current_position'] is None
     assert s.snapshot(12,10)['stale']
 
 def test_unknown_modes():

@@ -1,0 +1,8 @@
+{
+  "schema": "earthship-shade-owner-installation/v1",
+  "commandsEnabled": false,
+  "publisher": {
+    "enabled": false
+  },
+  "slots": []
+}

@@ -1,0 +1,15 @@
+# Unconfigured skeleton: copy outside Git and every served/web root.
+# Directory: current process owner, mode 0700. Config/key/password: mode 0600.
+# owner.key is exact raw 32..4096 bytes shared with the adapter; no sample key.
+# Both credential files must be siblings of this TOML file, not symlinks/hardlinks.
+# No connection is attempted unless explicitly invoked with --publish and a
+# valid already-signed, unexpired command/policy wrapper on stdin.
+owner_key_file = "owner.key"
+
+[mqtt]
+host = "" # REQUIRED: actual existing authenticated broker endpoint; empty refuses
+port = 1883 # replace if required by the actual listener
+prefix = "earthship/shades/v2"
+username = "" # REQUIRED: dedicated owner principal with owner-topic-only ACL
+password_file = "owner.password"
+tls = false # replace with the actual listener requirement; no downgrade fallback

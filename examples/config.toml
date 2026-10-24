@@ -1,23 +1,44 @@
-# Copy outside Git and replace addresses/IDs. Never commit credentials.
+# Copy outside Git. All addresses/device IDs below are documentation placeholders.
+# Observation stays available without owner credentials or commissioned motion.
 allow_commands = false
 poll_seconds = 600
 stale_seconds = 1800
+request_timeout_seconds = 2.0
+poll_spacing_seconds = 1.0
+receipt_journal_file = "/var/lib/dooya-blinds/receipts.json"
+# Exact raw 32..4096 bytes, owner-readable 0600; match the existing OpenHAB owner.
+# owner_key_file = "/etc/dooya-blinds/owner.key"
 
 [bridge]
-host = "192.0.2.10" # documentation-only address; replace with P-Box IP
-interface_ip = "0.0.0.0" # on multihomed Ubuntu host, use interface facing P-Box
+host = "192.0.2.10" # replace with the DD7066 LAN address
+interface_ip = "0.0.0.0" # use the interface facing the bridge on multihomed hosts
 key_file = "/etc/dooya-blinds/bridge.key"
+# Set from read-only discovery + physical commissioning, never a guessed identity.
+# mac = "AABBCCDDEEFF"
+message_id_state_file = "/var/lib/dooya-blinds/message-id"
+discovery_correlation = "echoed_id" # strict default; no automatic compatibility fallback
+# Only after recording a physical bridge pin + read-only Gate A evidence:
+# discovery_correlation = "pinned_discovery_without_id"
 
 [mqtt]
-host = "127.0.0.1" # only if MQTT broker is on this Ubuntu host; otherwise use broker LAN address
+host = "127.0.0.1" # only after confirming the existing broker is on this host
 port = 1883
-prefix = "earthship/shades/v1"
+prefix = "earthship/shades/v2"
 username = "dooya"
 password_file = "/etc/dooya-blinds/mqtt.password"
-tls = false # enable for brokers configured with trusted TLS certificates
+tls = false
 
 [[shades]]
 id = "skylight_1"
-mac = "0000000000000001" # replace with discover output, preserve case
+mac = "0000000000000001" # replace with discovered identity; case is normalized
+zone = "kitchen" # logical mapping only; no physical capability is implied
+slot = 1
 invert = false
-percentage = false # enable after bidirectional percentage control is qualified
+percentage = false
+supported_operations = []
+# Fill each capability only from separately authorized supervised acceptance.
+# commissioned_epoch = "11111111-1111-4111-8111-111111111111"
+# model = "actual label"
+# firmware = "actual version"
+# commissioning_ref = "private acceptance receipt reference"
+# supported_operations = ["UP", "DOWN", "STOP"]
